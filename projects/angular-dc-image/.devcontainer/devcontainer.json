@@ -11,7 +11,7 @@
   },
   "features": {
     "ghcr.io/devcontainers-contrib/features/angular-cli:2": {
-      "version": "17.1.1"
+      "version": "17.2.1"
     },
     "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {}
   },
