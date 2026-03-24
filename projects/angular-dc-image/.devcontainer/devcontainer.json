@@ -13,7 +13,7 @@
     "ghcr.io/devcontainers-extra/features/angular-cli:2": {
       "version": "21.2.3"
     },
-    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0.0.2": {
+    "ghcr.io/akhildevelops/devcontainers-extra/android-cli:0.0.2": {
       "PACKAGES": "cmdline-tools;latest,build-tools;30.0.3,build-tools;33.0.3,platform-tools,platforms;android-30,platforms;android-33"
     }
   },
