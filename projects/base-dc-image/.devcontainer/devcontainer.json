@@ -24,7 +24,9 @@
       "version": "latest"
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/java:1": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21"
+    },
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers-extra/features/tsx:1": {},
     "ghcr.io/devcontainers-extra/features/npm-package:1": {

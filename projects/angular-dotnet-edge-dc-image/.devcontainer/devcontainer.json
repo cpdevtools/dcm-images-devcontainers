@@ -10,8 +10,8 @@
     }
   },
   "features": {
-    "ghcr.io/devcontainers-contrib/features/angular-cli:2": {
-      "version": "19.1.6"
+    "ghcr.io/devcontainers-extra/features/angular-cli:2": {
+      "version": "21.2.3"
     }
   },
   "customizations": {
