@@ -12,7 +12,8 @@
   "containerEnv": {
     "CONTAINER_FOLDER": "/devcontainer",
     "CONTAINER_SETTINGS_FOLDER": "/devcontainer/.devcontainer",
-    "REPOS": "/devcontainer/repos"
+    "REPOS": "/devcontainer/repos",
+    "pnpm_config_verify_deps_before_run": "false"
   },
   "onCreateCommand": "cd $CONTAINER_FOLDER && dcm dc-event onCreate ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-onCreateCommand",
   "updateContentCommand": "cd $CONTAINER_FOLDER && dcm dc-event updateContent ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-updateContentCommand",
