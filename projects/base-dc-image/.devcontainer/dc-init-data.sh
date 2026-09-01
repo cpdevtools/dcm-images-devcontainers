@@ -20,25 +20,33 @@ if [ -d "$SETTINGS/.claude-config" ] && [ ! -e "$DATA/claude-config" ]; then
     mv "$SETTINGS/.claude-config" "$DATA/claude-config"
 fi
 
-mkdir -p "$DATA/claude-config" "$DATA/pnpm/store" "$DATA/yarn"
+mkdir -p "$DATA/claude-config" "$DATA/pnpm/store" "$DATA/pnpm/bin" "$DATA/yarn"
 
 # NuGet, only on images that declare it -- the .NET-bearing ones set NUGET_*
 # in their own containerEnv, so the base image stays toolchain-free.
 if [ -n "${NUGET_PACKAGES:-}" ]; then
     mkdir -p "$DATA/nuget"/{packages,http-cache,plugins-cache,NuGet}
 
-    # NuGet.Config lives at ~/.nuget/NuGet and no env var relocates it, so link
-    # the whole nuget home. Migrates existing content exactly once.
-    if [ ! -L "$HOME/.nuget" ]; then
-        if [ -d "$HOME/.nuget" ]; then
-            cp -an "$HOME/.nuget/." "$DATA/nuget/" 2>/dev/null || true
-            rm -rf "$HOME/.nuget"
+    # NUGET_* covers the caches, but NuGet.Config at ~/.nuget/NuGet has no env
+    # var, so link just that subdirectory. Never touch all of ~/.nuget: an
+    # instance may mount a volume over ~/.nuget/packages, and rm would fail on
+    # the busy mountpoint and abort the lifecycle hook.
+    if [ ! -L "$HOME/.nuget/NuGet" ]; then
+        mkdir -p "$HOME/.nuget"
+        if [ -d "$HOME/.nuget/NuGet" ]; then
+            cp -an "$HOME/.nuget/NuGet/." "$DATA/nuget/NuGet/" 2>/dev/null || true
+            rm -rf "$HOME/.nuget/NuGet" 2>/dev/null || true
         fi
-        ln -s "$DATA/nuget" "$HOME/.nuget"
+        # Best effort only. If ~/.nuget is not ours to write -- e.g. Docker made
+        # it root-owned to host a volume mount over ~/.nuget/packages -- leave it
+        # alone rather than failing the hook. NUGET_* still redirects the caches.
+        if [ ! -e "$HOME/.nuget/NuGet" ]; then
+            ln -s "$DATA/nuget/NuGet" "$HOME/.nuget/NuGet" 2>/dev/null \
+                || echo "dc-init-data: could not link ~/.nuget/NuGet, leaving as-is" >&2
+        fi
     fi
 fi
 
-# pnpm global bin dir, ready to use without per-instance wiring.
-export SHELL="${SHELL:-/bin/bash}"
-export PNPM_HOME="$DATA/pnpm"
-pnpm setup >/dev/null 2>&1 || true
+# Nothing else to do for pnpm: PNPM_HOME and PATH come from the image env, and
+# the bin dir is created above. Do NOT call `pnpm setup` here -- it kills its
+# own parent shell, which aborts the lifecycle hook that invoked this script.
