@@ -6,17 +6,20 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:${IMAGE_VERSION}
 USER node
 
 RUN sudo mkdir -p /devcontainer \
-    && sudo mkdir -p /commandhistory \
-    && mkdir -p $HOME/.npm \
-    && mkdir -p $HOME/.pnpm-store \
-    && mkdir -p $HOME/.cache/yarn
+    && sudo mkdir -p /commandhistory
 
-VOLUME [ "/devcontainer",  "/commandhistory", "${HOME}/.npm", "${HOME}/.pnpm-store",  "${HOME}/.cache/yarn"]
 RUN sudo chown -R node:node /devcontainer /commandhistory $HOME
 
 # Install xdg-utils for browser open support
 RUN sudo apt-get update && sudo apt-get install -y \
     xdg-utils \
     && sudo rm -rf /var/lib/apt/lists/*
+
+# Persistent state (claude config, nuget, pnpm) lives under the /devcontainer
+# bind mount so it survives rebuilds. dc-init-data.sh creates the tree at
+# container start, because build-time dirs are masked once the mount lands.
+ENV PATH="/devcontainer/.devcontainer/.data/pnpm/bin:${PATH}"
+COPY dc-init-data.sh /usr/local/bin/
+RUN sudo chmod +x /usr/local/bin/dc-init-data.sh
 
 CMD [ "sleep", "infinity" ]

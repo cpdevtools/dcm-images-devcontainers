@@ -13,13 +13,18 @@
     "CONTAINER_FOLDER": "/devcontainer",
     "CONTAINER_SETTINGS_FOLDER": "/devcontainer/.devcontainer",
     "REPOS": "/devcontainer/repos",
+    "CONTAINER_DATA_FOLDER": "/devcontainer/.devcontainer/.data",
+    "CLAUDE_CONFIG_DIR": "/devcontainer/.devcontainer/.data/claude-config",
+    "PNPM_HOME": "/devcontainer/.devcontainer/.data/pnpm",
+    "YARN_CACHE_FOLDER": "/devcontainer/.devcontainer/.data/yarn",
+    "pnpm_config_store_dir": "/devcontainer/.devcontainer/.data/pnpm/store",
     "pnpm_config_verify_deps_before_run": "false"
   },
-  "onCreateCommand": "cd $CONTAINER_FOLDER && dcm dc-event onCreate ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-onCreateCommand",
+  "onCreateCommand": "/usr/local/bin/dc-init-data.sh && cd $CONTAINER_FOLDER && dcm dc-event onCreate ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-onCreateCommand",
   "updateContentCommand": "cd $CONTAINER_FOLDER && dcm dc-event updateContent ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-updateContentCommand",
   "postCreateCommand": "cd $CONTAINER_FOLDER && dcm dc-event postCreate ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-postCreateCommand",
   "postAttachCommand": "cd $CONTAINER_FOLDER && dcm dc-event postAttach ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-postAttachCommand",
-  "postStartCommand": "cd $CONTAINER_FOLDER && dcm dc-event postStart ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-postStartCommand",
+  "postStartCommand": "/usr/local/bin/dc-init-data.sh && cd $CONTAINER_FOLDER && dcm dc-event postStart ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-postStartCommand",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "version": "latest"
@@ -56,6 +61,7 @@
         "42Crunch.vscode-openapi",
         "christian-kohler.npm-intellisense",
         "christian-kohler.path-intellisense",
+        "Anthropic.claude-code",
         "dbaeumer.vscode-eslint",
         "donjayamanne.githistory",
         "EditorConfig.EditorConfig",

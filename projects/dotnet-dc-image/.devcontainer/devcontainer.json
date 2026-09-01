@@ -9,6 +9,11 @@
       "VERSION": "${localEnv:VERSION}"
     }
   },
+  "containerEnv": {
+    "NUGET_PACKAGES": "/devcontainer/.devcontainer/.data/nuget/packages",
+    "NUGET_HTTP_CACHE_PATH": "/devcontainer/.devcontainer/.data/nuget/http-cache",
+    "NUGET_PLUGINS_CACHE_PATH": "/devcontainer/.devcontainer/.data/nuget/plugins-cache"
+  },
   "features": {
     "ghcr.io/devcontainers/features/dotnet:2": {
       "version": "7.0",
