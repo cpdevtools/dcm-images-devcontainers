@@ -1,0 +1,14 @@
+{
+  "features": {
+    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0.0.2": {
+      "version": "0.0.2",
+      "resolved": "ghcr.io/akhildevelops/devcontainer-features/android-cli@sha256:ed8c34099119a93a138bedf2b2300ead6423ad5fbbd7353ddfb57d7b80a2bf59",
+      "integrity": "sha256:ed8c34099119a93a138bedf2b2300ead6423ad5fbbd7353ddfb57d7b80a2bf59"
+    },
+    "ghcr.io/devcontainers-extra/features/angular-cli:2": {
+      "version": "2.0.16",
+      "resolved": "ghcr.io/devcontainers-extra/features/angular-cli@sha256:ce6e5b54a1da409b24f84c624ec8973e6027c6e1bad0385fe65d7fa3e2db5bc8",
+      "integrity": "sha256:ce6e5b54a1da409b24f84c624ec8973e6027c6e1bad0385fe65d7fa3e2db5bc8"
+    }
+  }
+}
