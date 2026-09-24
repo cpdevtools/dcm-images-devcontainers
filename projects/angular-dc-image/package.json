@@ -1,10 +1,15 @@
 {
   "name": "angular-dc-image",
-  "publishConfig": {
-    "type": "docker"
-  },
+  "version": "0.0.0-MAIN",
+  "private": true,
+  "description": "angular-dc-image devcontainer image",
   "scripts": {
-    "actions-build": "devcontainer build  --workspace-folder ./ --image-name ghcr.io/cpdevtools/dcm-images-devcontainers/angular-dc-image:latest",
-    "actions-publish": "devcontainer build  --workspace-folder ./ --image-name angular-dc-image:latest"
-  }
+    "build": "devcontainer build --workspace-folder . --image-name angular-dc-image:latest",
+    "github.actions.build": "pnpm run build",
+    "github.actions.pack": "gitflow pack"
+  },
+  "dependencies": {
+    "base-dc-image": "workspace:*"
+  },
+  "license": "MIT"
 }

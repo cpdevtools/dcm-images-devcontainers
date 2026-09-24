@@ -1,10 +1,15 @@
 {
   "name": "dotnet-dc-image",
-  "publishConfig": {
-    "type": "docker"
-  },
+  "version": "0.0.0-MAIN",
+  "private": true,
+  "description": "dotnet-dc-image devcontainer image",
   "scripts": {
-    "actions-build": "devcontainer build  --workspace-folder ./ --image-name ghcr.io/cpdevtools/dcm-images-devcontainers/dotnet-dc-image:latest",
-    "actions-publish": "devcontainer build  --workspace-folder ./ --image-name dotnet-dc-image:latest"
-  }
+    "build": "devcontainer build --workspace-folder . --image-name dotnet-dc-image:latest",
+    "github.actions.build": "pnpm run build",
+    "github.actions.pack": "gitflow pack"
+  },
+  "dependencies": {
+    "base-dc-image": "workspace:*"
+  },
+  "license": "MIT"
 }

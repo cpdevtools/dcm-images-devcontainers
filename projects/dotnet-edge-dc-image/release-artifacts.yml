@@ -1,0 +1,10 @@
+artifacts:
+  # Bare name; registry host/namespace come from .publish/registries.yml,
+  # composing to ghcr.io/cpdevtools/dcm-images-devcontainers/dotnet-edge-dc-image.
+  - type: docker-image
+    name: dotnet-edge-dc-image
+    # The tag `pnpm run build` produces locally; git-flow saves it at pack
+    # and pushes it as <version> plus latest/next at publish.
+    localTag: dotnet-edge-dc-image:latest
+    registries:
+      - ghcr

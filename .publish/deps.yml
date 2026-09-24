@@ -1,0 +1,15 @@
+# Pinned dependency versions enforced across the workspace.
+# `pnpm check` validates and `pnpm fix` applies these versions.
+npm:
+  '@cpdevtools/git-flow': '^1.1.1'
+  '@cpdevtools/git-flow-cli': '^1.1.1'
+  '@cpdevtools/ts-dev-utilities-cli': '^1.2.0'
+  '@devcontainers/cli': '^0.89.0'
+  husky: '^9.1.7'
+  prettier: '^3.9.9'
+  syncpack: '^13.0.0'
+  typescript: '^5.9.3'
+  wireit: '^0.14.13'
+
+github-actions:
+  actions/checkout: v7

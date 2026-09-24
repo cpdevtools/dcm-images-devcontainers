@@ -1,2 +1,10 @@
-pnpm run pre-commit
-pnpx lint-staged --allow-empty
+# Guard: nothing should ever write dev-local paths into a committed file. If one
+# shows up, a pre-conversion tool touched the repo — regenerate the lockfile with
+# a plain `pnpm install` (or fix the manifest) and re-commit.
+if grep -q 'file:/devcontainer' pnpm-lock.yaml package.json projects/*/package.json 2>/dev/null; then
+  echo "pre-commit FAILED: file:/devcontainer path in lockfile or manifest (dev-local leak)" >&2
+  exit 1
+fi
+
+git tag | xargs -r git tag -d
+pnpm exec lint-staged --allow-empty

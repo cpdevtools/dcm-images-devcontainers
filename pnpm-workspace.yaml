@@ -1,2 +1,11 @@
 packages:
-  - "projects/*"
+  - 'projects/*'
+
+# The git-flow toolchain ships on a prerelease cadence, so its packages are
+# regularly younger than the default release-age cutoff. Exclude them by name.
+minimumReleaseAgeExclude:
+  - '@cpdevtools/git-flow'
+  - '@cpdevtools/git-flow-cli'
+  - '@cpdevtools/ts-dev-utilities'
+  - '@cpdevtools/ts-dev-utilities-cli'
+  - '@oclif/core'
