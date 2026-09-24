@@ -15,8 +15,8 @@
     "reset": "wireit"
   },
   "devDependencies": {
-    "@cpdevtools/git-flow": "^1.1.1",
-    "@cpdevtools/git-flow-cli": "^1.1.1",
+    "@cpdevtools/git-flow": "^1.1.2",
+    "@cpdevtools/git-flow-cli": "^1.1.2",
     "@cpdevtools/ts-dev-utilities-cli": "^1.2.0",
     "@devcontainers/cli": "^0.89.0",
     "husky": "^9.1.7",

@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
-      packages: read
+      packages: write # pack pushes the image temp tag to the registry
     steps:
       - uses: actions/checkout@v7
         with:
