@@ -6,7 +6,7 @@
     "dockerfile": "dockerfile",
     "context": ".",
     "args": {
-      "VERSION": "${localEnv:VERSION}"
+      "VERSION": "${localEnv:PROJECT_VERSION:latest}"
     }
   },
   "containerEnv": {
@@ -16,8 +16,8 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/dotnet:2": {
-      "version": "7.0",
-      "additionalVersions": "6.0,5.0,3.1"
+      "version": "10.0",
+      "additionalVersions": "9.0,8.0,6.0"
     }
   },
   "customizations": {
@@ -25,7 +25,7 @@
       "settings": {
         "cSpell.words": ["linq", "nuget"]
       },
-      "extensions": ["ms-dotnettools.csharp@1.26.0"]
+      "extensions": ["ms-dotnettools.csharp"]
     }
   }
 }

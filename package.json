@@ -1,31 +1,117 @@
 {
   "name": "dcm-images-devcontainers",
-  "version": "0.11.0",
-  "description": "",
+  "version": "0.0.0-MAIN",
+  "private": true,
+  "description": "Devcontainer base images for cpdevtools projects — workspace root",
   "scripts": {
-    "prepare": "run-s prepare:*",
-    "prepare:husky": "husky",
-    "prepare:remove-tags": "pnpm run remove-tags",
-    "remove-tags": "git tag | xargs git tag -d",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier --write --ignore-unknown .",
-    "pre-commit": "run-s pre-commit:*",
-    "pre-commit:tags": "pnpm run remove-tags",
-    "reset-hard": "git clean -dfx && git reset --hard && pnpm i --force"
+    "build": "devutil run build",
+    "check": "wireit",
+    "clean": "wireit",
+    "fix": "wireit",
+    "format": "wireit",
+    "gitflow": "gitflow",
+    "postinstall": "devutil dev-link auto",
+    "prepare": "husky || true",
+    "reset": "wireit"
   },
-  "keywords": [],
   "devDependencies": {
-    "@cpdevtools/lib-node-utilities": "^0.4.59",
+    "@cpdevtools/git-flow": "^1.1.1",
+    "@cpdevtools/git-flow-cli": "^1.1.1",
+    "@cpdevtools/ts-dev-utilities-cli": "^1.2.0",
     "@devcontainers/cli": "^0.89.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.5.1",
-    "npm": "^10.1.0",
-    "npm-run-all2": "^9.0.3",
     "prettier": "^3.9.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.0"
+    "syncpack": "^13.0.0",
+    "typescript": "^5.9.3",
+    "wireit": "^0.14.13"
+  },
+  "keywords": [],
+  "author": "cpdevtools",
+  "license": "MIT",
+  "repository": "cpdevtools/dcm-images-devcontainers.git",
+  "engines": {
+    "node": ">=24"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
+  },
+  "packageManager": "pnpm@11.27.1",
+  "wireit": {
+    "fix": {
+      "dependencies": [
+        "fix.syncpack",
+        "fix.git-remove-tags",
+        "format"
+      ]
+    },
+    "fix.deps": {
+      "command": "devutil dep-versions fix .publish/deps.yml"
+    },
+    "fix.git-remove-tags": {
+      "command": "git tag | xargs -r git tag -d"
+    },
+    "fix.syncpack": {
+      "command": "syncpack fix-mismatches",
+      "dependencies": [
+        "fix.deps"
+      ]
+    },
+    "format": {
+      "dependencies": [
+        "format.prettier"
+      ]
+    },
+    "format.syncpack": {
+      "command": "syncpack format"
+    },
+    "format.prettier": {
+      "command": "prettier --write \"**/*.{ts,js,json,md,yml,yaml}\" --ignore-path .gitignore",
+      "dependencies": [
+        "format.syncpack"
+      ]
+    },
+    "check": {
+      "dependencies": [
+        "check.deps",
+        "check.syncpack"
+      ]
+    },
+    "check.deps": {
+      "command": "devutil dep-versions check .publish/deps.yml"
+    },
+    "check.syncpack": {
+      "command": "syncpack list-mismatches"
+    },
+    "clean": {
+      "dependencies": [
+        "clean.install"
+      ]
+    },
+    "clean.git": {
+      "command": "git clean -dfX",
+      "cache": false
+    },
+    "clean.install": {
+      "command": "pnpm install",
+      "dependencies": [
+        "clean.git"
+      ],
+      "cache": false
+    },
+    "reset": {
+      "dependencies": [
+        "reset.git",
+        "pnpm.install"
+      ]
+    },
+    "reset.git": {
+      "command": "git reset --hard",
+      "cache": false
+    },
+    "pnpm.install": {
+      "command": "pnpm install",
+      "cache": false
+    }
   }
 }

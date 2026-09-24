@@ -1,0 +1,12 @@
+# Registries used when publishing release artifacts.
+# Referenced by each project's release-artifacts.yml (registries: [...]).
+#
+# Every image is a docker-image artifact with a bare name (base-dc-image, ...);
+# host + namespace come from here, composing to the pre-migration
+# ghcr.io/cpdevtools/dcm-images-devcontainers/<image> so consumers are unaffected.
+registries:
+  ghcr:
+    type: docker
+    registry: ghcr.io
+    namespace: cpdevtools/dcm-images-devcontainers
+    auth: GITHUB_TOKEN

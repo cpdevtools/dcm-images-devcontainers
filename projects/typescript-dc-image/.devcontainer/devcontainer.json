@@ -6,7 +6,7 @@
     "dockerfile": "dockerfile",
     "context": ".",
     "args": {
-      "VERSION": "${localEnv:VERSION}"
+      "VERSION": "${localEnv:PROJECT_VERSION:latest}"
     }
   },
   "features": {},

@@ -1,5 +1,12 @@
 ARG VERSION=latest
 
-FROM ghcr.io/cpdevtools/dcm-images-devcontainers/dotnet-edge-dc-image:${VERSION}
-ENV VERSION=${VERSION}
-
+# Local tag produced by the parent project's build in the same run. git-flow
+# builds workspace dependencies first, so every image in a release is layered
+# on that release's own parent, not whatever `latest` is on the registry.
+FROM dotnet-edge-dc-image:latest
+# ARG declared before FROM is out of scope after it; re-declare to stamp the release
+# version. Not `ENV VERSION`: MSBuild imports environment variables as properties, so
+# a VERSION env var would silently become $(Version) for every .NET build in the container.
+ARG VERSION
+ENV DC_IMAGE_VERSION=${VERSION}
+LABEL org.opencontainers.image.version=${VERSION}

@@ -1,10 +1,12 @@
 {
   "name": "base-dc-image",
-  "publishConfig": {
-    "type": "docker"
-  },
+  "version": "0.0.0-MAIN",
+  "private": true,
+  "description": "base-dc-image devcontainer image",
   "scripts": {
-    "actions-build": "devcontainer build  --workspace-folder ./ --image-name ghcr.io/cpdevtools/dcm-images-devcontainers/base-dc-image:latest",
-    "actions-publish": "devcontainer build  --workspace-folder ./ --image-name base-dc-image:latest"
-  }
+    "build": "devcontainer build --workspace-folder . --image-name base-dc-image:latest",
+    "github.actions.build": "pnpm run build",
+    "github.actions.pack": "gitflow pack"
+  },
+  "license": "MIT"
 }
