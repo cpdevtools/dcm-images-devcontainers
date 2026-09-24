@@ -27,13 +27,13 @@
   "postStartCommand": "/usr/local/bin/dc-init-data.sh && cd $CONTAINER_FOLDER && dcm dc-event postStart ${devcontainerId} && cd $CONTAINER_SETTINGS_FOLDER && pnpm run --if-present dc-postStartCommand",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
-      "version": "latest"
+      "version": "latest",
+      "moby": false
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21"
     },
-    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers-extra/features/tsx:1": {},
     "ghcr.io/devcontainers-extra/features/npm-package:1": {
       "package": "@cpdevtools/dcman-cli"

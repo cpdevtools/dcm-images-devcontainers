@@ -11,8 +11,8 @@ runs:
     - name: Install Node & Dependencies
       uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
       with:
-        nodeVersion: 20.13.1
-        pnpmVersion: 9.1.2
+        nodeVersion: 24.21.0
+        pnpmVersion: 10.34.5
 
     - name: Build
       uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main

@@ -16,7 +16,7 @@ jobs:
       version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Check Version
         id: version
@@ -30,7 +30,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -45,7 +45,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -60,7 +60,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -75,7 +75,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -90,7 +90,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -105,7 +105,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -120,7 +120,7 @@ jobs:
       VERSION: ${{ needs.validate.outputs.version }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/publish-image
@@ -145,7 +145,7 @@ jobs:
       releaseId: ${{ steps.create_release.outputs.releaseId }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Create Release
         id: create_release

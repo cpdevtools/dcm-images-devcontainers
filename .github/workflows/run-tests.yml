@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Build Base Image
         uses: ./.github/actions/build-image
@@ -39,7 +39,7 @@ jobs:
     needs: [build-base-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
@@ -57,7 +57,7 @@ jobs:
     needs: [build-base-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
@@ -75,7 +75,7 @@ jobs:
     needs: [build-base-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
@@ -99,7 +99,7 @@ jobs:
     needs: [build-dotnet-edge-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
@@ -117,7 +117,7 @@ jobs:
     needs: [build-base-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
@@ -140,7 +140,7 @@ jobs:
     needs: [build-angular-dc-image]
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v7.0.1
 
       - name: Download artifact
         uses: ishworkh/container-image-artifact-download@v2.0.0
